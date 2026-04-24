@@ -160,7 +160,7 @@ export default function App() {
   const creativeBreakCooldownRef = useRef(0);
 
   // Multiplayer state
-  const localPlayerId = useRef<string>(Math.random().toString(36).substring(2, 15));
+  const localPlayerId = useRef<string>(crypto.randomUUID());
   const remotePlayers = useRef<Map<string, THREE.Group>>(new Map());
   const [playerCount, setPlayerCount] = useState(1);
 
@@ -1291,7 +1291,6 @@ export default function App() {
       cancelAnimationFrame(frameId);
       clearInterval(positionInterval);
       playersListener();
-      set(playerRef, null);
       camera.remove(handModel);
       renderer.domElement.removeEventListener("mousedown", handleMouseDown);
       renderer.domElement.removeEventListener("contextmenu", handleContextMenu);
